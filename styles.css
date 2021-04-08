@@ -6,12 +6,26 @@
     box-sizing: border-box;
     font-family: 'Rubik', sans-serif;
 }
-
+body {
+    overflow-x: hidden;
+}
+button {
+    appearance: none;
+    background: transparent;
+    border: 0px;
+    color: #bcc3c7;
+    cursor: pointer;
+}
+svg {
+    vertical-align: middle;
+    fill: currentColor;
+}
 div.nav-bar {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding: 1rem 6rem;
-    width: 100vw;
+    width: 100%;
     background: #304353;
 }
 
@@ -20,7 +34,7 @@ div.logo {
     color: #bcc3c7;
 }
 
-ul.nav-links {
+.nav-links {
     display: flex;
     margin: 0;
     padding: 0;
@@ -48,6 +62,7 @@ div.hero-section {
     background: #304353;
     padding: 10rem;
 }
+
 
 div.hero-content-heading {
     text-align: center;
@@ -98,14 +113,66 @@ div.hero-background {
 div.background {
     background: #fff;
     box-shadow: 2px 2px 15px 0 rgb(135 135 135 / 40%);
-    padding: 15px 40px;
-    width: 550px;
-    height: 220px;
+    padding: 2em 1em;
     position: relative;
+    width: 100%;
+    max-width: 520px;
 }
+@media (max-width: 768px) {
+    div.nav-bar {
+        padding: 1rem 2rem;
+    }
+    div.hero-section {
+        padding:5rem 2rem;
+    }
+    div.hero-background {
+        padding: 5rem 2rem;
+    }
+    
+}
+/* styles for the nav */
+.js-nav-open.active  {
+    display: none;
+}
+.js-nav-close.active {
+    display: block;
+}
+.menu-icon {
+    display: none;
+}
+@media (max-width: 488px) {
+    .nav-links {
+        position: fixed;
+        top: -9999px;
+        left: 0px;
+        background: #304353;
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: top .4s ease-in-out;
+    }
+    .nav-links.active {
+        top: 0px;
+    }
+    .nav-links li a{
+        display: inline-block;
+        margin-bottom: 1em;
 
+    }
+    .menu-icon {
+        display: block;
+    }
+    .menu-icon,.menu-icon-close {
+        position: relative;
+        z-index: 999999;
+    }
+    
+}
 div.background h4 {
-    padding: 2rem;
+    margin-bottom: .5em;
     color: #555657;
     font-size: 1rem;
     letter-spacing: 2px;
@@ -114,22 +181,33 @@ div.background h4 {
 
 div.background p {
     color: #A6A5AA;
-    padding-left: 2rem;
     font-size: 0.8rem;
     letter-spacing: 2px;
+    max-width: 33em;
 }
 
-div.hero-background-pos {
+div.background::after {
+    content: "";
+    display: block;
     position: absolute;
-    right: 0px;
-    left: 66%;
+    left: calc(100% - (140px/2));
+    top: 50%;
+    transform: translateY(-50%);
     background: #fff;
     width: 140px;
     height: 140px;
     border-radius: 50%;
     box-shadow: 2px 2px 15px 0 rgb(135 135 135 / 40%);
 }
-
+@media (max-width: 557px) {
+    div.background::after {
+        left: calc(50% - (140px/2));
+        top: 0%;
+    }
+    div.background h4 {
+        margin-top: 4em;
+    }
+}
 div.snapshot-team {
     background: #f0f0f0;
     text-align: center;
@@ -157,11 +235,17 @@ div.snapshot-box {
     background: #f0f0f0;
     padding: 4rem 6rem;
 }
-
-div.snapshot-box-content {
-    display: flex;
-    justify-content: space-between;
+@media (max-width: 557px) {
+    div.snapshot-box {
+        padding: 4rem 2rem;
+    }
 }
+
+    div.snapshot-box-content {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 
 div.box1 {
     background: #fff;
@@ -275,12 +359,17 @@ div.footer-input {
     justify-content: center;
     align-items: center;
     padding-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.footer-input input {
+    width: 25%;
+    margin: 5px;
 }
 
 input[type="text"] {
     margin-right: 10px;
     padding: 10px 20px;
-    width: 25%;
     outline: none;
     border: 1px solid #bcc3c7;
     background: transparent;
@@ -292,7 +381,6 @@ input[type="text"] {
 input[type="email"] {
     margin-right: 10px;
     padding: 10px 20px;
-    width: 25%;
     outline: none;
     border: 1px solid #bcc3c7;
     background: transparent;
@@ -321,6 +409,18 @@ textarea {
     background: transparent;
     color: #f0f0f0;
 }
+@media (max-width: 554px) {
+    .footer-input input {
+        width: 100%;
+        margin: 5px;
+    }
+    textarea {
+        width: 100%;
+    }
+    div.gallery-section {
+        padding: 2rem;
+    }
+}
 
 div.footer-btn {
     display: flex;
@@ -336,7 +436,6 @@ div.footer-btn a {
     font-size: 0.9rem;
     padding: 10px 50px;
     border-radius: 3px;
-    letter-spacing: 2px;
 }
 
 div.footer h6 {
